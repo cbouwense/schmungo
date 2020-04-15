@@ -55,6 +55,8 @@
   box-sizing: border-box;
   left: 0;
   right: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2em;
 }
 
 .DescriptionInput {
@@ -63,6 +65,9 @@
   box-sizing: border-box;
   left: 0;
   right: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2em;
+  word-wrap: break-word;
 }
 
 .SaveButtonContainer {
