@@ -2,17 +2,36 @@ import React, { Component } from "react";
 import styles from "./App.css";
 
 import { AddButton } from "../AddButton/AddButton";
+import { CreateModal } from "../CreateModal/CreateModal";
 import { Header } from "../Header/Header";
 import { TaskCard } from "../TaskCard/TaskCard";
 import { TaskCards } from "../TaskCards/TaskCards";
 
 class App extends Component {
+  state = {};
+
+  handleCreateOpen = () => {
+    this.setState({
+      createModalOpen: true
+    })
+  }
+  
+  handleCreateClose = () => {
+    this.setState({
+      createModalOpen: false
+    })
+  }
+
   render() {
     return (
       <div className={styles.App}>
+        <CreateModal 
+          close={this.handleCreateClose}
+          open={this.state.createModalOpen} 
+        />
         <Header />
         <div className={styles.AppBody}>
-          <AddButton />
+          <AddButton onClick={this.handleCreateOpen} />
           <TaskCards>
             <TaskCard title="Walk Dog">
               Fido needs to be taken for a walk.
