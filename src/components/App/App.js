@@ -44,6 +44,34 @@ class App extends Component {
               I need to make this todo app to keep my skills up and boost
               my confidence with React and just front end dev in general.
             </TaskCard>
+            <TaskCard title="Make App">
+              I need to make this todo app to keep my skills up and boost
+              my confidence with React and just front end dev in general.
+            </TaskCard>
+            <TaskCard title="Make App">
+              I need to make this todo app to keep my skills up and boost
+              my confidence with React and just front end dev in general.
+            </TaskCard>
+            <TaskCard title="Make App">
+              I need to make this todo app to keep my skills up and boost
+              my confidence with React and just front end dev in general.
+            </TaskCard>
+            <TaskCard title="Make App">
+              I need to make this todo app to keep my skills up and boost
+              my confidence with React and just front end dev in general.
+            </TaskCard>
+            <TaskCard title="Make App">
+              I need to make this todo app to keep my skills up and boost
+              my confidence with React and just front end dev in general.
+            </TaskCard>
+            <TaskCard title="Make App">
+              I need to make this todo app to keep my skills up and boost
+              my confidence with React and just front end dev in general.
+            </TaskCard>
+            <TaskCard title="Make App">
+              I need to make this todo app to keep my skills up and boost
+              my confidence with React and just front end dev in general.
+            </TaskCard>
           </TaskCards>
         </div>
       </div>

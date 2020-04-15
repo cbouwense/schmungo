@@ -1,6 +1,6 @@
 .Header {
   background-color: white;
-  height: 30px;
+  min-height: 30px;
   padding: 20px;
   color: black;
   display: flex;
