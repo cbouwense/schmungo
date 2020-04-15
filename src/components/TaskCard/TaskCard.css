@@ -1,0 +1,21 @@
+.TaskCard {
+  background-color: white;
+  box-shadow: 5px 5px 20px #c9c9c9; 
+  display: flex;
+  flex-flow: column;
+  margin-top: 30px;
+  height: min-content;
+  width: 30%;
+  padding: 10px;
+}
+
+.TaskCardTitle {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 10px 0;
+  word-wrap: break-word;
+}
+
+.TaskCardDescription {
+
+}
