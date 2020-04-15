@@ -5,19 +5,20 @@
 
 .Backdrop {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 100%;
+  height: 100vh;
   width: 100%;
-  position: absolute;
+  position: fixed;
   z-index: 9;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .CreateModal {
   height: 80%;
   width: 80%;
   background-color: rgba(255, 255, 255, 1);
-  position: absolute;
+  position: fixed;
   z-index: 10;
   margin-top: 50px;
   border-radius: 1%;
