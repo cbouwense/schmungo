@@ -1,0 +1,20 @@
+.Header {
+  background-color: white;
+  height: 30px;
+  padding: 20px;
+  color: black;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.Title {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.Group {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
