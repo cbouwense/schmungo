@@ -12,10 +12,8 @@ export class CreateModal extends Component {
 
   handleSubmit = () => {
     const timezone = moment.tz.guess();
-    console.log("timezone: ", timezone)
     const datetime = moment().format("YYYY-MM-DD HH:mm:ss")
     const createdAt = moment.tz(datetime, timezone).format()
-    console.log("created", createdAt)
     
     axios.post("http://localhost:5000/task", {
       title: this.state.title,
