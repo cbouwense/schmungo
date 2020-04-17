@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_marshmallow import Marshmallow
 
 from db import init_db
@@ -6,6 +7,9 @@ from ma import init_ma
 
 # Init app
 app = Flask(__name__)
+
+# Enable CORS
+cors = CORS(app)
 
 # Database
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://christian:cunit1874@localhost:5432/schmungo_api"

@@ -1,3 +1,5 @@
+import axios from "axios";
+import moment from "moment-timezone";
 import React, { Component } from "react";
 import styles from "./CreateModal.css";
 
@@ -6,6 +8,29 @@ export class CreateModal extends Component {
   state = {
     title: "",
     description: ""
+  }
+
+  handleSubmit = () => {
+    const timezone = moment.tz.guess();
+    console.log("timezone: ", timezone)
+    const datetime = moment().format("YYYY-MM-DD HH:mm:ss")
+    const createdAt = moment.tz(datetime, timezone).format()
+    console.log("created", createdAt)
+    
+    axios.post("http://localhost:5000/task", {
+      title: this.state.title,
+      description: this.state.description,
+      time_created: createdAt,
+      // TODO: grab this from redux
+      user_id: 1
+    })
+    .then(res => {
+      console.log("successful!");
+      console.log(res);
+    })
+    .catch(err => {
+      console.log("error: ", err);
+    })
   }
 
   handleTitleChange = (event) => {
@@ -49,6 +74,7 @@ export class CreateModal extends Component {
           <div className={styles.SaveButtonContainer}>
             <button 
               className={styles.SaveButton}
+              onClick={this.handleSubmit}
             >
               Save
             </button>
