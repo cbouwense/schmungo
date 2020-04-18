@@ -1,0 +1,17 @@
+.SaveButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.SaveButton {
+    width: 100px;
+    height: 80px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px #c9c9c9; 
+    background-color: #f9f9f9;
+    border: 1px #c9c9c9;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    font-size: 2em;
+    margin: 30px 0;
+}

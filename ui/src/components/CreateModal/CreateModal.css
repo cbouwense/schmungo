@@ -16,7 +16,9 @@
 
 .CreateModal {
   height: 80%;
+  min-height: 650px;
   width: 80%;
+  min-width: 600px;
   background-color: rgba(255, 255, 255, 1);
   position: fixed;
   z-index: 10;
@@ -57,6 +59,8 @@
   right: 0;
   font-family: 'Quicksand', sans-serif;
   font-size: 2em;
+  background-color: white;
+  border: 1px solid #c9c9c9;
 }
 
 .DescriptionInput {
@@ -68,22 +72,5 @@
   font-family: 'Quicksand', sans-serif;
   font-size: 2em;
   word-wrap: break-word;
-}
-
-.SaveButtonContainer {
-  display: flex;
-  justify-content: center;
-}
-
-.SaveButton {
-  width: 100px;
-  height: 80px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 20px #c9c9c9; 
-  background-color: #f9f9f9;
-  border: 1px #c9c9c9;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 300;
-  font-size: 2em;
-  margin: 30px 0;
+  border: 1px solid #c9c9c9;
 }

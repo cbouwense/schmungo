@@ -3,6 +3,8 @@ import moment from "moment-timezone";
 import React, { Component } from "react";
 import styles from "./CreateModal.css";
 
+import { SaveButton } from "../SaveButton/SaveButton";
+
 export class CreateModal extends Component {
 
   state = {
@@ -44,6 +46,9 @@ export class CreateModal extends Component {
   }
 
   render() {
+    const saveButtonEnabled = this.state.title.length > 0 && 
+      this.state.description.length > 0;
+
     return this.props.open ? (
       <div className={styles.ModalContainer}>
         <div className={styles.Backdrop} onClick={this.props.close}></div>
@@ -69,14 +74,7 @@ export class CreateModal extends Component {
             onChange={this.handleDescriptionChange}
             value={this.state.description}
           />
-          <div className={styles.SaveButtonContainer}>
-            <button 
-              className={styles.SaveButton}
-              onClick={this.handleSubmit}
-            >
-              Save
-            </button>
-          </div>
+          <SaveButton enabled={saveButtonEnabled} />
         </div>
       </div>
      ) : null
