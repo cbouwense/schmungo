@@ -6,7 +6,7 @@ export const SaveButton = props => (
     <div className={styles.SaveButtonContainer}>
       <button 
         className={styles.SaveButton}
-        onClick={this.handleSubmit}
+        onClick={props.handleSubmit}
       >
         Save
       </button>

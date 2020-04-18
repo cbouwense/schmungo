@@ -74,7 +74,10 @@ export class CreateModal extends Component {
             onChange={this.handleDescriptionChange}
             value={this.state.description}
           />
-          <SaveButton enabled={saveButtonEnabled} />
+          <SaveButton 
+            enabled={saveButtonEnabled} 
+            handleSubmit={this.handleSubmit}
+          />
         </div>
       </div>
      ) : null
