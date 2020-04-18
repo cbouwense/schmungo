@@ -35,8 +35,6 @@ def create_one():
     time_created = request.json["time_created"]
 
     # TODO add salt
-    print ("password")
-    print (type (password))
     hashed_password = sha256(password.encode()).hexdigest()
 
     new_user = User(name=name, 
