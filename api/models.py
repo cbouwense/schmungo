@@ -29,11 +29,14 @@ class User(db.Model):
     name = db.Column(db.String(25))
     email = db.Column(db.String(40))
     password = db.Column(db.String(64))
+    time_created = db.Column(db.DateTime(timezone=True))
 
     def __init__(self, 
                  name, 
                  password,
+                 time_created,
                  email=None):
         self.name = name
         self.email = email
         self.password = password
+        self.time_created = time_created

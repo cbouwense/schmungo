@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from hashlib import sha256
 
 from db import db
 from ma import ma
@@ -11,7 +12,8 @@ class UserSchema(ma.Schema):
             "id", 
             "name", 
             "email", 
-            "password"
+            "password",
+            "time_created"
         )
 
 # Init Schema
@@ -30,12 +32,17 @@ def create_one():
     name = request.json["name"]
     email = request.json["email"]
     password = request.json["password"]
+    time_created = request.json["time_created"]
 
-    # hash password
+    # TODO add salt
+    print ("password")
+    print (type (password))
+    hashed_password = sha256(password.encode()).hexdigest()
 
     new_user = User(name=name, 
                     email=email, 
-                    password=password)
+                    password=hashed_password,
+                    time_created=time_created)
 
     db.session.add(new_user)
     db.session.commit()

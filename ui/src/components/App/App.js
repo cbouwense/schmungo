@@ -5,12 +5,14 @@ import styles from "./App.css";
 import { AddButton } from "../AddButton/AddButton";
 import { CreateModal } from "../CreateModal/CreateModal";
 import { Header } from "../Header/Header";
+import { RegisterModal } from "../RegisterModal/RegisterModal";
 import { TaskCards } from "../TaskCards/TaskCards";
 
 class App extends Component {
   state = {
     createModalOpen: false,
     fetchingTasks: true,
+    registerModalOpen: false,
     tasks: []
   };
 
@@ -42,6 +44,18 @@ class App extends Component {
     })
   }
 
+  handleRegisterOpen = () => {
+    this.setState({
+      registerModalOpen: true
+    })
+  }
+  
+  handleRegisterClose = () => {
+    this.setState({
+      registerModalOpen: false
+    })
+  }
+
   render() {
     return (
       <div className={styles.App}>
@@ -49,7 +63,11 @@ class App extends Component {
           close={this.handleCreateClose}
           open={this.state.createModalOpen} 
         />
-        <Header />
+        <RegisterModal
+          close={this.handleRegisterClose}
+          open={this.state.registerModalOpen}
+        />
+        <Header registerClick={this.handleRegisterOpen} />
         <div className={styles.AppBody}>
           <AddButton onClick={this.handleCreateOpen} />
           <TaskCards tasks={this.state.tasks} />
