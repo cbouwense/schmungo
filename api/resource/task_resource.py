@@ -18,7 +18,7 @@ class TaskSchema(ma.Schema):
 
 # Init Schema
 task_schema = TaskSchema()
-#tasks_schema = TaskSchema(many=True)
+tasks_schema = TaskSchema(many=True)
 
 task = Blueprint("task", __name__)
 
@@ -26,6 +26,11 @@ task = Blueprint("task", __name__)
 def get(id):
     res = db.session.query(Task).filter(Task.id == id)
     return task_schema.jsonify(res.first())
+
+@task.route("/task", methods=["GET"])
+def list():
+    res = db.session.query(Task)
+    return tasks_schema.jsonify(res.all())
 
 @task.route("/task", methods=["POST"])
 def create_one():
