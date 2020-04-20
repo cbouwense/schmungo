@@ -46,3 +46,27 @@ def create_one():
     db.session.commit()
 
     return user_schema.jsonify(new_user)
+
+@user.route("/login", methods=["POST"])
+def login():
+  name = request.json["name"]
+  password = request.json["password"]
+
+  hashed_password = sha256(password.encode()).hexdigest()
+
+  query_res = db.session.query(User).filter(User.name == name).first()
+  if query_res == None:
+    response = jsonify({"message": "Incorrect username or password"})
+    return response, 401
+  else:
+    if query_res.password == hashed_password:
+      user = {
+        "name": query_res.name,
+        "id": query_res.id
+      }
+      return jsonify(user)
+    else:
+      response = jsonify({"message": "Incorrect username or password"})
+      return response, 401
+  
+

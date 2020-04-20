@@ -40,3 +40,4 @@ class User(db.Model):
         self.email = email
         self.password = password
         self.time_created = time_created
+        

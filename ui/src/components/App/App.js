@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { Component } from "react";
 import styles from "./App.css";
 
@@ -7,30 +6,16 @@ import { CreateModal } from "../CreateModal/CreateModal";
 import { Header } from "../Header/Header";
 import { RegisterModal } from "../RegisterModal/RegisterModal";
 import { TaskCards } from "../TaskCards/TaskCards";
+import { LoginModal } from "../LoginModal/LoginModal";
 
 class App extends Component {
   state = {
     createModalOpen: false,
     fetchingTasks: true,
+    loginModalOpen: false,
     registerModalOpen: false,
     tasks: []
   };
-
-  componentDidMount() {
-    axios.get("http://localhost:5000/task")
-      .then(res => {
-        console.log("data: ", res.data)
-        this.setState({
-          tasks: res.data
-        })
-      })
-      .catch(err => {
-        console.error("error fetching tasks: ", err);
-      });
-    this.setState({
-      fetchingTasks: false
-    })
-  }
 
   handleCreateOpen = () => {
     this.setState({
@@ -56,6 +41,18 @@ class App extends Component {
     })
   }
 
+  handleLoginOpen = () => {
+    this.setState({
+      loginModalOpen: true
+    })
+  }
+  
+  handleLoginClose = () => {
+    this.setState({
+      loginModalOpen: false
+    })
+  }
+
   render() {
     return (
       <div className={styles.App}>
@@ -63,14 +60,18 @@ class App extends Component {
           close={this.handleCreateClose}
           open={this.state.createModalOpen} 
         />
+        <LoginModal
+          close={this.handleLoginClose}
+          open={this.state.loginModalOpen}
+        />
         <RegisterModal
           close={this.handleRegisterClose}
           open={this.state.registerModalOpen}
         />
-        <Header registerClick={this.handleRegisterOpen} />
+        <Header registerClick={this.handleRegisterOpen} loginClick={this.handleLoginOpen} />
         <div className={styles.AppBody}>
           <AddButton onClick={this.handleCreateOpen} />
-          <TaskCards tasks={this.state.tasks} />
+          <TaskCards />
         </div>
       </div>
     );

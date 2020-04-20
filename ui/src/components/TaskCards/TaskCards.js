@@ -1,27 +1,52 @@
-import React from "react";
+import axios from "axios";
+import React , { Component } from "react";
 import styles from "./TaskCards.css";
 import { connect } from "react-redux";
 
 import { TaskCard } from "../TaskCard/TaskCard";
 
-const ConnectedTaskCards = props => (
-  <div className={styles.TaskCards}>
-    {props.tasks
-      .filter(task => task.user_id === props.user.id)
-      .map(task => (
-        <TaskCard key={task.id} title={task.title}>
-          {task.description}
-        </TaskCard>
-      ))
+class ConnectedTaskCards extends Component {
+  state = {
+    tasks: []
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    if (nextProps !== this.props && nextProps.user) {
+      console.log("nextProps: ", nextProps)
+      axios.get(`http://localhost:5000/task/user/${nextProps.user.id}`)
+        .then(res => {
+          this.setState({
+            tasks: res.data
+          })
+        })
+        .catch(err => {
+          console.error("error fetching tasks: ", err);
+        });
+      this.setState({
+        fetchingTasks: false
+      })
     }
-  </div>
-);
+  }
 
-const mapStateToProps = (state) => ({
-  // TODO
-  //user: state.user
-  // HACK
-  user: { id: 1 }
-});
+  render() {
+    return (
+      <div className={styles.TaskCards}>
+        {console.log("props: ", this.props)}
+        {this.state.tasks.map(task => (
+          <TaskCard key={task.id} title={task.title}>
+            {task.description}
+          </TaskCard>
+        ))}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  console.log("mapStateToProps state: ", state)
+  return {
+    user: state.user.user
+  }
+}
 
 export const TaskCards = connect(mapStateToProps)(ConnectedTaskCards);

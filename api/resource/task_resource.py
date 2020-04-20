@@ -27,6 +27,11 @@ def get(id):
     res = db.session.query(Task).filter(Task.id == id)
     return task_schema.jsonify(res.first())
 
+@task.route("/task/user/<id>", methods=["GET"])
+def get_user_tasks(id):
+    res = db.session.query(Task).filter(Task.user_id == id)
+    return tasks_schema.jsonify(res.all())
+
 @task.route("/task", methods=["GET"])
 def list():
     res = db.session.query(Task)

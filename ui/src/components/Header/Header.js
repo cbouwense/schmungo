@@ -12,7 +12,7 @@ export const Header = props => (
     <h1 className={styles.Title}>Schmungo</h1>
     <div className={styles.Group}>
       <HeaderItem title="Sign Up" onClick={props.registerClick} />
-      <HeaderItem title="Log In" />
+      <HeaderItem title="Log In" onClick={props.loginClick} />
     </div>
   </header>
 );
