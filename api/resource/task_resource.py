@@ -53,3 +53,9 @@ def create_one():
     db.session.commit()
 
     return task_schema.jsonify(new_task)
+
+@task.route("/task/<id>", methods=["DELETE"])
+def delete_one(id):
+  db.session.query(Task).filter(Task.id == id).delete()
+  db.session.commit()
+  return jsonify(success=True)
