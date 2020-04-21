@@ -1,7 +1,9 @@
 import axios from "axios";
 import React , { Component } from "react";
 import styles from "./TaskCards.css";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import * as TaskActions from "../../actions/task";
 
 import { TaskCard } from "../TaskCard/TaskCard";
 
@@ -13,7 +15,6 @@ class ConnectedTaskCards extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
       if (nextProps.user) {
-        console.log("nextProps: ", nextProps)
         axios.get(`http://localhost:5000/task/user/${nextProps.user.id}`)
           .then(res => {
             this.setState({
@@ -27,7 +28,8 @@ class ConnectedTaskCards extends Component {
         this.setState({
           tasks: []
         })
-      } 
+      }
+      this.props.action.tasksUpdated();
     }
   }
 
@@ -48,8 +50,13 @@ class ConnectedTaskCards extends Component {
 const mapStateToProps = (state) => {
   console.log("mapStateToProps state: ", state)
   return {
+    tasksUpdated: state.task.tasksUpdated,
     user: state.user.user
   }
 }
 
-export const TaskCards = connect(mapStateToProps)(ConnectedTaskCards);
+const mapDispatchToProps = (dispatch) => ({
+  action: bindActionCreators(TaskActions, dispatch)
+})
+
+export const TaskCards = connect(mapStateToProps, mapDispatchToProps)(ConnectedTaskCards);

@@ -2,11 +2,14 @@ import axios from "axios";
 import moment from "moment-timezone";
 import React, { Component } from "react";
 import styles from "./CreateModal.css";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as TaskActions from "../../actions/task";
 
 import { Modal } from "../Modal/Modal";
 import { SaveButton } from "../SaveButton/SaveButton";
 
-export class CreateModal extends Component {
+class ConnectedCreateModal extends Component {
   state = {
     title: "",
     description: ""
@@ -21,12 +24,12 @@ export class CreateModal extends Component {
       title: this.state.title,
       description: this.state.description,
       time_created: createdAt,
-      // TODO: grab this from redux
-      user_id: 1
+      user_id: this.props.user.id
     })
     .then(res => {
       console.log("successful!");
       console.log(res);
+      this.props.action.tasksUpdating();
       this.props.close();
     })
     .catch(err => {
@@ -73,3 +76,13 @@ export class CreateModal extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user.user
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  action: bindActionCreators(TaskActions, dispatch)
+})
+
+export const CreateModal = connect(mapStateToProps, mapDispatchToProps)(ConnectedCreateModal);
