@@ -1,6 +1,6 @@
 .ModalContainer {
-  display: flex;
-  justify-content: center;
+  /*display: flex;*/
+  /*justify-content: center;*/
 }
 
 .Backdrop {
@@ -12,6 +12,8 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
+  right: 0;
+  top: 0;
 }
 
 .Modal {
@@ -22,7 +24,10 @@
   background-color: rgba(255, 255, 255, 1);
   position: fixed;
   z-index: 10;
-  margin-top: 50px;
+  top: 50px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   border-radius: 1%;
   display: flex;
   flex-flow: column;
