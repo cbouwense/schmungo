@@ -5,10 +5,17 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as TaskActions from "../../actions/task";
 
+import edit from "../../images/edit.png";
 import trash from "../../images/trash.png";
 
 const ConnectedTaskCard = props => (
   <div className={styles.TaskCard}>
+    <img
+      className={styles.TaskCardEdit}
+      alt="edit icon"
+      src={edit}
+      onClick={this.handleEditOpen}
+    />
     <img 
       className={styles.TaskCardDelete} 
       alt="delete icon" 

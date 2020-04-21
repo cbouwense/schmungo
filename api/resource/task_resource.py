@@ -54,6 +54,21 @@ def create_one():
 
     return task_schema.jsonify(new_task)
 
+@task.route("/task/<id>", methods=["PUT"])
+def update_one(id):
+    title = request.json["title"]
+    description = request.json["description"]
+
+    db.session.query(Task).filter(Task.id == id).\
+      update({
+        "title": title,
+        "description": description,
+      })
+    db.session.commit()
+
+    new_task = db.session.query(Task).filter(Task.id == id)
+    return task_schema.jsonify(new_task.first())
+
 @task.route("/task/<id>", methods=["DELETE"])
 def delete_one(id):
   db.session.query(Task).filter(Task.id == id).delete()
