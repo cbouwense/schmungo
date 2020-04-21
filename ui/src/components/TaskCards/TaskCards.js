@@ -11,20 +11,23 @@ class ConnectedTaskCards extends Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props && nextProps.user) {
-      console.log("nextProps: ", nextProps)
-      axios.get(`http://localhost:5000/task/user/${nextProps.user.id}`)
-        .then(res => {
-          this.setState({
-            tasks: res.data
+    if (nextProps !== this.props) {
+      if (nextProps.user) {
+        console.log("nextProps: ", nextProps)
+        axios.get(`http://localhost:5000/task/user/${nextProps.user.id}`)
+          .then(res => {
+            this.setState({
+              tasks: res.data
+            })
           })
+          .catch(err => {
+            console.error("error fetching tasks: ", err);
+          });
+      } else {
+        this.setState({
+          tasks: []
         })
-        .catch(err => {
-          console.error("error fetching tasks: ", err);
-        });
-      this.setState({
-        fetchingTasks: false
-      })
+      } 
     }
   }
 

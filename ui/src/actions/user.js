@@ -1,7 +1,8 @@
-export const userLogin = (user) => {
-  console.log("user: ", user);
-  return {
-    type: "LOGIN",
-    user
-  }
-}
+export const userLogin = (user) => ({
+  type: "LOGIN",
+  user
+})
+
+export const userLogout = () => ({
+  type: "LOGOUT"
+})
