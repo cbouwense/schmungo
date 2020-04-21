@@ -1,11 +1,20 @@
+import axios from "axios";
 import React from "react";
 import styles from "./TaskCard.css";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as TaskActions from "../../actions/task";
 
 import trash from "../../images/trash.png";
 
-export const TaskCard = props => (
+const ConnectedTaskCard = props => (
   <div className={styles.TaskCard}>
-    <img className={styles.TaskCardDelete} alt="delete icon" src={trash} />
+    <img 
+      className={styles.TaskCardDelete} 
+      alt="delete icon" 
+      src={trash} 
+      onClick={() => deleteTask(props.id, props.action)} 
+    />
     <div className={styles.TaskCardContent}>
       <h3 className={styles.TaskCardTitle}>
         {props.title}
@@ -16,3 +25,20 @@ export const TaskCard = props => (
     </div>
   </div>
 );
+
+const deleteTask = (id, action) => {
+  axios.delete(`http://localhost:5000/task/${id}`)
+    .then(res => {
+      console.log("res: ", res.data)
+      action.tasksUpdating();
+    })
+    .catch(err => {
+      console.log(`error deleting task ${id}: `, err)
+    })
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  action: bindActionCreators(TaskActions, dispatch)
+});
+
+export const TaskCard = connect(null, mapDispatchToProps)(ConnectedTaskCard);

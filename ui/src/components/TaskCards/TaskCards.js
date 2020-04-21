@@ -38,7 +38,7 @@ class ConnectedTaskCards extends Component {
       <div className={styles.TaskCards}>
         {console.log("props: ", this.props)}
         {this.state.tasks.map(task => (
-          <TaskCard key={task.id} title={task.title}>
+          <TaskCard key={task.id} title={task.title} id={task.id}>
             {task.description}
           </TaskCard>
         ))}
