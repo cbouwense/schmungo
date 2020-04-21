@@ -8,10 +8,7 @@
   box-shadow: 5px 5px 20px #c9c9c9; 
 }
 
-.ButtonText {
-  margin-top: -25px;
-  color: #595959;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 15em;
-  font-weight: 300;
+.ButtonImage {
+  height: 75%;
+  width: 75%;
 }

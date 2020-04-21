@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./App.css";
+import { connect } from "react-redux";
 
 import { AddButton } from "../AddButton/AddButton";
 import { CreateModal } from "../CreateModal/CreateModal";
@@ -8,7 +9,7 @@ import { RegisterModal } from "../RegisterModal/RegisterModal";
 import { TaskCards } from "../TaskCards/TaskCards";
 import { LoginModal } from "../LoginModal/LoginModal";
 
-class App extends Component {
+class ConnectedApp extends Component {
   state = {
     createModalOpen: false,
     fetchingTasks: true,
@@ -70,7 +71,10 @@ class App extends Component {
         />
         <Header registerClick={this.handleRegisterOpen} loginClick={this.handleLoginOpen} />
         <div className={styles.AppBody}>
-          <AddButton onClick={this.handleCreateOpen} />
+          {this.props.user 
+            ? <AddButton onClick={this.handleCreateOpen} />
+            : <h1>Register or Login to begin!</h1> 
+          } 
           <TaskCards />
         </div>
       </div>
@@ -78,4 +82,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  user: state.user.user
+});
+
+export const App = connect(mapStateToProps)(ConnectedApp);

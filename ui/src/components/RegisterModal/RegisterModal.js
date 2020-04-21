@@ -2,11 +2,14 @@ import axios from "axios";
 import moment from "moment-timezone";
 import React, { Component } from "react";
 import styles from "./RegisterModal.css";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as UserActions from "../../actions/user";
 
 import { Modal } from "../Modal/Modal";
 import { SaveButton } from "../SaveButton/SaveButton";
 
-export class RegisterModal extends Component {
+class ConnectedRegisterModal extends Component {
   state = {
     name: "",
     email: "",
@@ -25,13 +28,22 @@ export class RegisterModal extends Component {
       email: this.state.email,
       password: this.state.password,
       time_created: createdAt
-    })
-    .then(res => {
-      console.log("successful!");
-      console.log(res);
+    }).then(res => {
+      axios.post("http://localhost:5000/login", {
+        name: this.state.name,
+        password: this.state.password
+      }).then(res => {
+        this.props.action.userLogin(res.data)
+      }).catch(err => {
+        console.log("error: ", err);
+      })
+      this.setState({
+        name: "",
+        email: "",
+        password: ""
+      })
       this.props.close();
-    })
-    .catch(err => {
+    }).catch(err => {
       console.log("error: ", err);
     })
   }
@@ -89,3 +101,9 @@ export class RegisterModal extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  action: bindActionCreators(UserActions, dispatch)
+})
+
+export const RegisterModal = connect(null, mapDispatchToProps)(ConnectedRegisterModal);

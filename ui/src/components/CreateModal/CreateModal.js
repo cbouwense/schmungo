@@ -30,6 +30,10 @@ class ConnectedCreateModal extends Component {
       console.log("successful!");
       console.log(res);
       this.props.action.tasksUpdating();
+      this.setState({
+        title: "",
+        description: ""
+      })
       this.props.close();
     })
     .catch(err => {

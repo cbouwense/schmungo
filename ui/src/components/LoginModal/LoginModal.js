@@ -23,6 +23,10 @@ class ConnectedLoginModal extends Component {
       console.log("successful!");
       console.log(res);
       this.props.action.userLogin(res.data)
+      this.setState({
+        name: "",
+        password: ""
+      })
       this.props.close();
     })
     .catch(err => {

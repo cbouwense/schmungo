@@ -6,6 +6,8 @@
   display: flex;
   align-content: center;
   justify-content: space-between;
+  box-shadow: 5px 0 20px #c9c9c9; 
+  margin-bottom: 15px;
 }
 
 .Title {
